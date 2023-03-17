@@ -16,7 +16,20 @@ todoRouter.get('/', (req, res) => {
 });
 
 // POST
-
+todoRouter.post('/', (req, res) => {
+    const task = req.body;
+    const sqlText = `INSERT INTO "taskList" ("taskName", "taskDesc", "status")
+                     VALUES ($1, $2, $3)`;
+    pool.query(sqlText, [task.taskName, task.taskDesc, task.status])
+        .then((result) => {
+            console.log(`Added a task to the database`, task);
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error making databse query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 // PUT
 
 // DELETE
