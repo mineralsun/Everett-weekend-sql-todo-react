@@ -35,11 +35,38 @@ function TaskList() {
             alert('Something went wrong!');
         })
     }
+    return (
+        <div>
+            <h2>Remaining Tasks!</h2>
 
-    <div>
-        <h2>Remaining Tasks!</h2>
-
-    </div>
+            <form onSubmit={submitForm}>
+                Task Name:
+                <input type="text"
+                       value={taskName}
+                       onChange={(e) => setTaskName(e.target.value)} />
+                <br />
+                Task Description:
+                <input type="text"
+                       value={taskDesc}
+                       onChange={(e) => setTaskDesc(e.target.value)} />
+                <br />
+                Task Status:
+                <input type="text"
+                       value={status}
+                       onChange={(e) => setStatus(e.target.value)} />
+                <input type="submit" />
+            </form>
+            <ul>
+                {
+                    listOfTasks.map((task) => (
+                        <li key={task.id}>
+                            {task.taskName}: {task.taskDesc} | Status: {task.status}
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    );
 }
 
 export default TaskList;
