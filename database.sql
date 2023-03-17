@@ -5,5 +5,9 @@ CREATE TABLE "tasklist" (
 	"status" BOOLEAN
 );
 
+-- I might change the status from a BOOLEAN to something else because I wanted to mark
+-- it as incomplete/complete and SQL would not let me
+-- I will ask an instructor for guidance there!
+
 INSERT INTO "tasklist" ("taskName", "taskDesc", "status")
 VALUES ('Put Away Laundry', 'Fold and put away clean laundry!', 'False')
