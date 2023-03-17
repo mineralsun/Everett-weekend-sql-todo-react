@@ -10,6 +10,18 @@ header {
   text-align: center;
 }
 
+body {
+  background-color: brown;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
 .App-title {
   font-size: 1.5em;
 }

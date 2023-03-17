@@ -6,10 +6,12 @@ import TaskList from '../TaskList/TaskList.jsx';
 function App () {
   
   return (
-    <div>
-      <Header />
-      <TaskList />
-    </div>
+    <body>
+      <header>
+        <Header />
+      </header>
+        <TaskList />
+    </body>
   );
 
 }

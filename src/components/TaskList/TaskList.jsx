@@ -29,6 +29,7 @@ function TaskList() {
         }).then((response) => {
             setTaskName('');
             setTaskDesc('');
+            setStatus('');
             fetchTaskList();
         }).catch((error) => {
             console.log(`Error in POST ${error}`);
@@ -44,12 +45,12 @@ function TaskList() {
                 <input type="text"
                        value={taskName}
                        onChange={(e) => setTaskName(e.target.value)} />
-                <br />
+                <span />
                 Task Description:
                 <input type="text"
                        value={taskDesc}
                        onChange={(e) => setTaskDesc(e.target.value)} />
-                <br />
+                <span />
                 Task Status:
                 <input type="text"
                        value={status}
