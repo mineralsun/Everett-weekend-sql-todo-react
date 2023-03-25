@@ -4,7 +4,6 @@ import axios from 'axios';
 function TaskList() {
     const [taskName, setTaskName] = useState('');
     const [taskDesc, setTaskDesc] = useState('');
-    const [status, setStatus] = useState('');
     const [listOfTasks, setListOfTasks] = useState([]);
 
     const fetchTaskList = () => {
@@ -23,13 +22,11 @@ function TaskList() {
     const submitForm = (e) => {
         e.preventDefault();
         axios.post('/todo', {
-            taskName,
-            taskDesc,
-            status,
+            taskName: taskName,
+            taskDesc: taskDesc,
         }).then((response) => {
             setTaskName('');
             setTaskDesc('');
-            setStatus('');
             fetchTaskList();
         }).catch((error) => {
             console.log(`Error in POST ${error}`);
@@ -51,17 +48,13 @@ function TaskList() {
                        value={taskDesc}
                        onChange={(e) => setTaskDesc(e.target.value)} />
                 <span />
-                Task Status:
-                <input type="text"
-                       value={status}
-                       onChange={(e) => setStatus(e.target.value)} />
                 <input type="submit" />
             </form>
             <ul>
                 {
                     listOfTasks.map((task) => (
                         <li key={task.id}>
-                            {task.taskName}: {task.taskDesc} | Status: {task.status}
+                            {task.taskName}: {task.taskDesc}
                         </li>
                     ))
                 }
