@@ -31,13 +31,28 @@ todoRouter.post('/', (req, res) => {
         })
 })
 // PUT
+todoRouter.put('/:id', (req, res) => {
+    console.log(`In PUT request /todo`);
+    let taskId = req.params.id;
+    let taskToEdit = req.body;
+    console.log(taskId);
+    console.log(taskToEdit);
+    let sqlText = `UPDATE tasklist SET "taskStatus" = $1 WHERE "id" = $2;`;
+    pool.query(sqlText, [taskToEdit.taskStatus, taskId])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log(`Error in PUT ${error}`);
+        res.sendStatus(500);
+    });
+});
 
 // DELETE
 todoRouter.delete('/deleteTask/:id', (req, res) => {
     console.log(`In DELETE request by ID /todo`);
-    let itemId = req.params.id;
+    let taskId = req.params.id;
     let sqlText = `DELETE FROM tasklist WHERE "id" = $1;`;
-    pool.query(sqlText, [itemId])
+    pool.query(sqlText, [taskId])
     .then((result) => {
         res.sendStatus(200);
     }).catch((error) => {
