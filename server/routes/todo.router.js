@@ -33,5 +33,17 @@ todoRouter.post('/', (req, res) => {
 // PUT
 
 // DELETE
+todoRouter.delete('/deleteTask/:id', (req, res) => {
+    console.log(`In DELETE request by ID /todo`);
+    let itemId = req.params.id;
+    let sqlText = `DELETE FROM tasklist WHERE "id" = $1;`;
+    pool.query(sqlText, [itemId])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log(`Error in DELETE ${error}`);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = todoRouter;

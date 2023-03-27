@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import TaskForm from './TaskForm.jsx';
+import TaskItem from './TaskItem.jsx';
 
 function TaskList() {
     const [taskName, setTaskName] = useState('');
@@ -35,27 +37,21 @@ function TaskList() {
     }
     return (
         <div>
-            <h2>Remaining Tasks!</h2>
-
-            <form onSubmit={submitForm}>
-                Task Name:
-                <input type="text"
-                       value={taskName}
-                       onChange={(e) => setTaskName(e.target.value)} />
-                <span />
-                Task Description:
-                <input type="text"
-                       value={taskDesc}
-                       onChange={(e) => setTaskDesc(e.target.value)} />
-                <span />
-                <input type="submit" />
-            </form>
+            <TaskForm 
+                taskName={taskName}
+                setTaskName={setTaskName}
+                taskDesc={taskDesc}
+                setTaskDesc={setTaskDesc}
+                fetchTaskList={fetchTaskList}
+            />
             <ul>
                 {
                     listOfTasks.map((task) => (
-                        <li key={task.id}>
-                            {task.taskName}: {task.taskDesc}
-                        </li>
+                        <TaskItem 
+                        key={task.id}
+                        task={task}
+                        fetchTaskList={fetchTaskList}
+                        />
                     ))
                 }
             </ul>
