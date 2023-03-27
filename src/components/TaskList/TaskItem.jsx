@@ -1,6 +1,7 @@
+import React, { useState, useEffect, SetStateAction } from 'react';
 import axios from 'axios';
 
-function TaskItem({ task, fetchTaskList }) {
+function TaskItem({ task, fetchTaskList, setTaskStatus }) {
 
     const removeTask = (e) => {
         console.log(`removeTask ${task.id}`)
@@ -14,10 +15,13 @@ function TaskItem({ task, fetchTaskList }) {
     }
 
     const completeTask = () => {
+
         if(task.taskStatus === false) {
-            let status = {status: task.taskStatus === true}
-            axios.put(`/todo/${task.id}`, status)
+            let status = {status: task.taskStatus = true}
+            console.log(status);
+            axios.put(`/todo/updateTask/${task.id}`, status)
             .then((response) => {
+                setTaskStatus = true;
                 fetchTaskList();
             }).catch((error) => {
                 console.log(`Error in completeTask ${error}`);
@@ -28,7 +32,7 @@ function TaskItem({ task, fetchTaskList }) {
 
     const markTask = () => {
         //TODO CHANGE THIS TO 'TRUE' WHEN YOUR PUT REQUEST IS WORKING
-        if(task.taskStatus === null) {
+        if(task.taskStatus === true) {
             return 'line-through';
         } else {
             return 'none';

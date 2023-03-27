@@ -6,6 +6,7 @@ import TaskItem from './TaskItem.jsx';
 function TaskList() {
     const [taskName, setTaskName] = useState('');
     const [taskDesc, setTaskDesc] = useState('');
+    const [taskStatus, setTaskStatus] = useState(false);
     const [listOfTasks, setListOfTasks] = useState([]);
 
     const fetchTaskList = () => {
@@ -20,7 +21,7 @@ function TaskList() {
     useEffect(() => {
         fetchTaskList();
     }, []);
-    
+
     return (
         <div>
             <TaskForm 
@@ -36,6 +37,7 @@ function TaskList() {
                         <TaskItem 
                         key={task.id}
                         task={task}
+                        setTaskStatus={setTaskStatus}
                         fetchTaskList={fetchTaskList}
                         />
                     ))

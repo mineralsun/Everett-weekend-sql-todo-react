@@ -31,7 +31,7 @@ todoRouter.post('/', (req, res) => {
         })
 })
 // PUT
-todoRouter.put('/:id', (req, res) => {
+todoRouter.put('/updateTask/:id', (req, res) => {
     console.log(`In PUT request /todo`);
     let taskId = req.params.id;
     let taskToEdit = req.body;
