@@ -15,7 +15,7 @@ function TaskItem({ task, fetchTaskList }) {
 
     const completeTask = () => {
         if(task.taskStatus === false) {
-            let status = {status: task.taskStatus === true};
+            let status = {status: task.taskStatus === true}
             axios.put(`/todo/${task.id}`, status)
             .then((response) => {
                 fetchTaskList();
@@ -26,9 +26,18 @@ function TaskItem({ task, fetchTaskList }) {
         }
     }
 
+    const markTask = () => {
+        //TODO CHANGE THIS TO 'TRUE' WHEN YOUR PUT REQUEST IS WORKING
+        if(task.taskStatus === null) {
+            return 'line-through';
+        } else {
+            return 'none';
+        }
+    }
+
     return (
-        <li key={task.id}>
-            {task.name}: {task.taskDesc}
+        <li style={{textDecoration: markTask() }} key={task.id}>
+            {task.taskName}: {task.taskDesc}
             <br />
             <button onClick={(e) => completeTask(e)}>Complete</button>
             <button onClick={(e) => removeTask(e)}>Delete</button>

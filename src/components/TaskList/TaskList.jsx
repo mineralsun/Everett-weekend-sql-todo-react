@@ -20,21 +20,7 @@ function TaskList() {
     useEffect(() => {
         fetchTaskList();
     }, []);
-
-    const submitForm = (e) => {
-        e.preventDefault();
-        axios.post('/todo', {
-            taskName: taskName,
-            taskDesc: taskDesc,
-        }).then((response) => {
-            setTaskName('');
-            setTaskDesc('');
-            fetchTaskList();
-        }).catch((error) => {
-            console.log(`Error in POST ${error}`);
-            alert('Something went wrong!');
-        })
-    }
+    
     return (
         <div>
             <TaskForm 
