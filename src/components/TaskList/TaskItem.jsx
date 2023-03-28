@@ -15,13 +15,11 @@ function TaskItem({ task, fetchTaskList, setTaskStatus }) {
     }
 
     const completeTask = () => {
-
         if(task.taskStatus === false) {
-            let status = {status: task.taskStatus = true}
+            const status = {status: !task.taskStatus}
             console.log(status);
             axios.put(`/todo/updateTask/${task.id}`, status)
             .then((response) => {
-                setTaskStatus = true;
                 fetchTaskList();
             }).catch((error) => {
                 console.log(`Error in completeTask ${error}`);
@@ -31,7 +29,6 @@ function TaskItem({ task, fetchTaskList, setTaskStatus }) {
     }
 
     const markTask = () => {
-        //TODO CHANGE THIS TO 'TRUE' WHEN YOUR PUT REQUEST IS WORKING
         if(task.taskStatus === true) {
             return 'line-through';
         } else {

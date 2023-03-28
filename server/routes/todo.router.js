@@ -38,7 +38,7 @@ todoRouter.put('/updateTask/:id', (req, res) => {
     console.log(taskId);
     console.log(taskToEdit);
     let sqlText = `UPDATE tasklist SET "taskStatus" = $1 WHERE "id" = $2;`;
-    pool.query(sqlText, [taskToEdit.taskStatus, taskId])
+    pool.query(sqlText, [taskToEdit.status, taskId])
     .then((result) => {
         res.sendStatus(200);
     }).catch((error) => {
